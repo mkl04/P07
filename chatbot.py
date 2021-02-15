@@ -87,14 +87,20 @@ def get_question(question):
 
     contexts = do_bm25(question, dfx, 3)
  
-    QA_input = {'question': question, 'context': contexts[0]}
-    res = model(QA_input)
+    best_score = 0
+    for context in contexts:
+        QA_input = {'question': question, 'context': context}
+        res = model(QA_input)
+        if res['score'] > best_score:
+            best_score = res['score']
+            best_answer = res['answer']
 
-    print("score: ", res['score'])
-    print("answer: ", res['answer'])
-    print("==========")
+        print("score: ", res['score'])
+        print("answer: ", res['answer'])
+        print("==========")
 
-    return "La respuesta es:  {}\nCon un porcentaje de {}% \n\nSi quieres realizar otra pregunta, actualice la página".format(res['answer'], np.round(res['score']*100), 1), 1
+
+    return "La respuesta es:  {}\nCon un porcentaje de {}% \n\nPuede realizar otra pregunta: ".format(best_answer, np.round(best_score*100), 1), 1
 
 
 # state 5

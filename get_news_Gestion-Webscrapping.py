@@ -7,10 +7,8 @@ import pandas as pd
 import os
 import json
 
-
 url_head = 'https://gestion.pe'
 tags = ['economia','mundo','tecnologia','peru']
-
 
 ## Extrayendo artículos con sus urls
 
@@ -24,7 +22,7 @@ for tag in tags:
     dates = content.find_all('p', class_="story-item__date font-thin ml-5 text-xs text-gray-300 md:mt-5 md:ml-0")
 
     for idx, result in enumerate(content2):
-
+        print(idx)
         title = result.find('a').text
         descr = result.find('p').text
         url = result.find('a')['href']
@@ -35,7 +33,6 @@ for tag in tags:
             soupx = BeautifulSoup(rx.text, 'html.parser')
             data = json.loads(soupx.find_all('script', type='application/ld+json')[1].string)
             text = data['articleBody']
-
             records.append((date, title, descr, url, text))
         except:
             print("Erro: ", tag, idx)
@@ -47,7 +44,6 @@ print("numero de noticias: ", df.shape[0])
 df = df.drop_duplicates()
 print("numero de noticias no duplicadas: ", df.shape[0])
 
-
 # get main topic
 routes = df.iloc[:,3]
 targets = []
@@ -57,5 +53,4 @@ for idx, route in enumerate(routes):
 df['topic'] = targets
 print(df.topic.value_counts())
 
-
-df.to_csv('data/2021-02-13-news.csv', index=False)
+df.to_csv('data/2021-02-15-news.csv', index=False)
