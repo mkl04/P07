@@ -25,20 +25,13 @@ from nltk import word_tokenize
 
 from transformers import pipeline
 
-dfx = pd.read_csv('data/noticias.csv')
+dfx = pd.read_csv('data/2021-02-16-coronavirus-news.csv')
 model_name = "mrm8488/distill-bert-base-spanish-wwm-cased-finetuned-spa-squad2-es"
 model = pipeline('question-answering', model=model_name, tokenizer=model_name)
 
 def get_opening_message():
     '''The variable starting message.'''
     return f"Mande una pregunta por favor"
-
-def numbered_print_list(lst):
-    '''Display strings in a numbered list.'''
-    final = ""
-    for i, s in enumerate(lst):
-        final += str(i+1) + '. ' + s + "\n"
-    return final
 
 def normalize_terms(terms):
     return [remove_diacritics(term).lower() for term in terms]
@@ -85,7 +78,7 @@ def do_bm25(query, df, best_n=3):
 def get_question(question):
     '''Ask user for the topic'''
 
-    contexts = do_bm25(question, dfx, 3)
+    contexts = do_bm25(question, dfx, 5)
  
     best_score = 0
     for context in contexts:
@@ -98,7 +91,6 @@ def get_question(question):
         print("score: ", res['score'])
         print("answer: ", res['answer'])
         print("==========")
-
 
     return "La respuesta es:  {}\nCon un porcentaje de {}% \n\nPuede realizar otra pregunta: ".format(best_answer, np.round(best_score*100), 1), 1
 

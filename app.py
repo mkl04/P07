@@ -52,10 +52,6 @@ def chat():
         '''Start a conversation.'''
         return render_template("index.html", display_text=get_opening_message(), state=1)
 
-@app.route('/exit')
-def exit():
-    return render_template('empty.html')
-
 
 if __name__ == "__main__":
 
