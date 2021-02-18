@@ -133,8 +133,10 @@ dmypy.json
 res/
 data/
 WebScrapping*
-Read_news*
+Read*
 utils_demo.py
 question_answering.py
-Read_embeddings_Word2Vec.ipynb
-Read_articles_BM25.ipynb
+WebScrapping-Gestión-Coronavirus.ipynb
+Selenium.ipynb
+
+vs_buildtools__2097860095.1576966235.exe

@@ -11,7 +11,7 @@ For this, BeatifulSoup was used. About pre-processing, just stopwords was delete
 
 ### Solution
 The template was gotten from [IBM's Web App](https://github.com/IBM/MAX-Question-Answering-Web-App). Due to I need to select the new with the required information, I apply the very known algorithm on IR (Information Retrieval): [BM25](https://en.wikipedia.org/wiki/Okapi_BM25).
-For Question Answering, I used the weights of a pre-trained Transformers model for spanish vocabulary that is available on [Hugging Face's page](https://huggingface.co/models). 
+For Question Answering, I used a pre-trained Transformers model for spanish vocabulary that is available on [Hugging Face's page](https://huggingface.co/models).
 
 ### Results
 As can be seen, the chatbot also shows the precision of the inference. Obviously, this application doesn't always shows the right answer, but maybe with fine-tuning, it will.

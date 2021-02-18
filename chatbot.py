@@ -87,10 +87,9 @@ def get_question(question):
         if res['score'] > best_score:
             best_score = res['score']
             best_answer = res['answer']
-
-        print("score: ", res['score'])
-        print("answer: ", res['answer'])
-        print("==========")
+        print( "score: {} -- answer: {}".format(res['score'], res['answer']) )
+        if best_score > 0.6:
+            break
 
     return "La respuesta es:  {}\nCon un porcentaje de {}% \n\nPuede realizar otra pregunta: ".format(best_answer, np.round(best_score*100), 1), 1
 
