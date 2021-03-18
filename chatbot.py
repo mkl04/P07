@@ -25,7 +25,7 @@ from nltk import word_tokenize
 
 from transformers import pipeline
 
-dfx = pd.read_csv('data/2021-02-16-coronavirus-news.csv')
+dfx = pd.read_csv('data/2021-03-17-all-news.csv')
 model_name = "mrm8488/distill-bert-base-spanish-wwm-cased-finetuned-spa-squad2-es"
 model = pipeline('question-answering', model=model_name, tokenizer=model_name)
 
@@ -91,7 +91,7 @@ def get_question(question):
         if best_score > 0.6:
             break
 
-    return "La respuesta es:  {}\nCon un porcentaje de {}% \n\nPuede realizar otra pregunta: ".format(best_answer, np.round(best_score*100), 1), 1
+    return "La respuesta es:  {}\nCon una probabilidad de {}% \n\nPuede realizar otra pregunta: ".format(best_answer, np.round(best_score*100), 1), 1
 
 
 # state 5

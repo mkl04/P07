@@ -29,7 +29,6 @@ app = Flask(__name__)
 # state that the conversation with the chatbot is in
 states = {
     1: get_question,
-    # 2: give_answer,
     5: end
 }
 
